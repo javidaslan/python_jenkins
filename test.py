@@ -22,9 +22,11 @@ class TestApp(unittest.TestCase):
 
     def test_hello_name(self):
         name = 'Simon'
-        rv = self.app.get('/hello/%s' % name)
+        rv = self.app.get(f'/hello/{name}')
+        #rv = self.app.get('/hello/%s' % name) #for PYTHON 2.x
         self.assertEqual(rv.status, '200 OK')
-        self.assertIn(name, rv.data)
+        self.assertIn(bytearray(f"{name}", 'utf-8'), rv.data)
+        #self.assertIn(name, rv.data) #for PYTHON 2.x
 
 if __name__ == '__main__':
     unittest.main()
