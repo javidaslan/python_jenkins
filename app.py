@@ -1,4 +1,6 @@
 from flask import Flask
+import unittest
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -12,3 +14,9 @@ def hello_user(username):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
+    ############## For test report integration ####################
+    import xmlrunner
+    runner = xmlrunner.XMLTestRunner(output='test-reports')
+    unittest.main(testRunner=runner)
+    ###########################################
+    unittest.main()
